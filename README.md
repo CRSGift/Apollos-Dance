@@ -1,2 +1,2 @@
 # Apollos-Dance
-3D Planetary Solar System
+2D Planetary Solar System
