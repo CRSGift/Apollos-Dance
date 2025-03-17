@@ -1,5 +1,11 @@
 #Level 3: Project
 import numpy as np
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800,800))
+pygame.display.set_caption("Apollo's Dance")
+clock = pygame.time.Clock()
 
 def calculated_E(t, P, eccentricity):
     n = 2 * np.pi / P # mean motion
@@ -23,4 +29,7 @@ def orbit(dt, P, eccentricity, semi_major_axis):
         theta = 2*np.arctan((np.sqrt((1+eccentricity)/(1-eccentricity)))*np.tan(E/2)) #calculate the angle
         x = r*np.cos(theta) # calculate the x position
         y = r*np.sin(theta) # calculate the y position
-        t += dt
+
+
+
+        t += dt #increment t
