@@ -2,11 +2,7 @@
 import numpy as np
 import pygame
 
-pygame.init()
-screen = pygame.display.set_mode((800,800))
-pygame.display.set_caption("Apollo's Dance")
-clock = pygame.time.Clock()
-
+#solve for E, the eccentric anomaly, using numerical methods
 def calculated_E(t, P, eccentricity):
     n = 2 * np.pi / P # mean motion
     M = n * t # mean anomaly
@@ -21,6 +17,7 @@ def calculated_E(t, P, eccentricity):
         E = E_next # update E for next iteration
     return E
 
+# position of planet as a function of time
 def orbit(dt, P, eccentricity, semi_major_axis):
     t = 0.
     while t < P: #until one rotation is completed
@@ -29,7 +26,25 @@ def orbit(dt, P, eccentricity, semi_major_axis):
         theta = 2*np.arctan((np.sqrt((1+eccentricity)/(1-eccentricity)))*np.tan(E/2)) #calculate the angle
         x = r*np.cos(theta) # calculate the x position
         y = r*np.sin(theta) # calculate the y position
-
-
-
         t += dt #increment t
+        yield x, y
+
+# Initialize pygame
+pygame.display.init()
+screen = pygame.display.set_mode((800,800))
+pygame.display.set_caption("Apollo's Dance")
+clock = pygame.time.Clock()
+
+# Main loop
+running = True
+while running:
+    screen.fill((0,0,0))
+    pygame.draw.circle(screen, (255,255,0), (400,400), 20)  # Sun
+    
+    pygame.display.flip()
+    clock.tick(60)
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+pygame.quit()
