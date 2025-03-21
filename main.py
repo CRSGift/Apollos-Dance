@@ -28,7 +28,6 @@ def calculated_E(t, P, eccentricity):
 # calculate scaling factors for each planet so that they are evenly spaced at t = 0
 scaling_factor = {}
 for index, planet in enumerate(planets.planets_data):
-    # 36.25
     scaling_factor[planet] = (50 + (45 * index)) / (planets.planets_data[planet][2])
 
 # Initialize pygame
@@ -48,7 +47,7 @@ trail_surface.fill((0,0,0)) # start with a transparent surface
 running = True
 while running:
     screen.fill((0,0,0))
-    pygame.draw.circle(screen, (255,204,51), (400,400), 30)  # the sun
+    pygame.draw.circle(screen, (255,204,51), (400,400), 30)  # the Sun
 
     for planet, (P, eccentricity, semi_major_axis, radius, color) in (planets.planets_data.items()): # iterate through the list of planets
         E = calculated_E(t, P, eccentricity) # calculate E
@@ -82,6 +81,7 @@ while running:
     # create a slider for dt, allowing for the user to slow down or speed up the simulation
     pygame.draw.line(screen, (255, 255, 255), (250, 50), (550, 50), 3) # draw the track
     pygame.draw.circle(screen, (255, 0, 0), (knob_x, 50), 10) # draw the knob
+    
     pygame.display.flip() # update the display
     clock.tick(60) # limit to 60 fps
 
