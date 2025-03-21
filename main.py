@@ -36,7 +36,6 @@ pygame.font.init()
 pygame.display.set_caption("Apollo's Dance")
 screen = pygame.display.set_mode((800,800))
 font = pygame.font.Font(None, 15)
-clock = pygame.time.Clock()
 
 # create a surface for trails
 trail_surface = pygame.Surface((800,800))
@@ -83,7 +82,6 @@ while running:
     pygame.draw.circle(screen, (255, 0, 0), (knob_x, 50), 10) # draw the knob
     
     pygame.display.flip() # update the display
-    clock.tick(60) # limit to 60 fps
 
     dt = 5000 + (((knob_x - 250)/ 300)*(5e6)) # calculate dt based on the knob position
     t += dt #increment t
